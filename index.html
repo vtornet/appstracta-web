@@ -73,6 +73,18 @@
             height: 40px;
             width: auto;
         }
+
+        .mobile-logo {
+            display: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .mobile-logo-img {
+            height: 80px;
+            width: auto;
+            margin: 0 auto;
+        }
         
         .logo-text {
             font-size: 1.5rem;
@@ -234,27 +246,28 @@
         }
         
         .app-mockup {
-		width: 280px;
-		height: 560px;
-		background: #2c3e50;
-		border-radius: 40px;
-		border: 12px solid #2c3e50;
-		position: relative;
-		overflow: hidden;
-		box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-		animation: float 6s ease-in-out infinite;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	    }
+            width: 280px;
+            height: 560px;
+            background: #2c3e50;
+            border-radius: 40px;
+            border: 12px solid #2c3e50;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            animation: float 6s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-		.mockup-img {
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-			border-radius: 28px;
-			background: white;
-		}
+        .mockup-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 28px;
+            background: white;
+        }
+        
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
@@ -371,11 +384,29 @@
             text-decoration: none;
             font-size: 0.95rem;
             transition: var(--transition);
+            padding: 10px 20px;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
         }
         
         .app-link:hover {
-            color: var(--accent);
+            background: var(--primary);
+            color: white;
             gap: 12px;
+            transform: translateY(-2px);
+        }
+
+        .app-link.coming-soon {
+            background: var(--gray);
+            border-color: var(--gray);
+            color: white;
+            cursor: not-allowed;
+        }
+
+        .app-link.coming-soon:hover {
+            background: var(--gray);
+            transform: none;
+            gap: 8px;
         }
         
         /* Portfolio Section */
@@ -507,11 +538,28 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: var(--transition);
+            padding: 8px 16px;
+            border: 2px solid var(--primary);
+            border-radius: 20px;
         }
         
         .portfolio-link:hover {
-            color: var(--accent);
+            background: var(--primary);
+            color: white;
             gap: 12px;
+        }
+
+        .portfolio-link.coming-soon {
+            background: var(--gray);
+            border-color: var(--gray);
+            color: white;
+            cursor: not-allowed;
+        }
+
+        .portfolio-link.coming-soon:hover {
+            background: var(--gray);
+            transform: none;
+            gap: 8px;
         }
         
         /* Stats Section */
@@ -544,63 +592,6 @@
         .stat-text {
             font-size: 1.1rem;
             opacity: 0.8;
-        }
-        
-        /* Team Section */
-        .team {
-            padding: 120px 0;
-            background: var(--light);
-        }
-        
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
-        
-        .team-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-        }
-        
-        .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        
-        .team-img {
-            height: 250px;
-            background: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-        }
-        
-        .team-content {
-            padding: 25px;
-        }
-        
-        .team-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-            color: var(--primary);
-        }
-        
-        .team-content .role {
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-        }
-        
-        .team-content p {
-            color: var(--gray);
-            font-size: 0.95rem;
         }
         
         /* CTA Section */
@@ -680,6 +671,7 @@
             border-radius: 50%;
             color: white;
             transition: var(--transition);
+            text-decoration: none;
         }
         
         .social-links a:hover {
@@ -779,11 +771,23 @@
             .hero-content {
                 max-width: 100%;
             }
+
+            .mobile-logo {
+                display: block;
+            }
         }
         
         @media (max-width: 768px) {
             nav ul {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             }
             
             .mobile-menu {
@@ -803,8 +807,7 @@
             }
             
             .apps-grid,
-            .portfolio-grid,
-            .team-grid {
+            .portfolio-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -816,6 +819,10 @@
             
             .footer-container {
                 grid-template-columns: 1fr;
+            }
+
+            .mobile-logo-img {
+                height: 60px;
             }
         }
         
@@ -830,6 +837,11 @@
             
             .cta h2 {
                 font-size: 2rem;
+            }
+
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 6px 15px;
             }
         }
     </style>
@@ -847,7 +859,6 @@
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#apps">Nuestras Apps</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#equipo">Equipo</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
@@ -863,6 +874,9 @@
     <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="container">
+            <div class="mobile-logo">
+                <img src="logos/appstracta-logo.png" alt="Appstracta" class="mobile-logo-img">
+            </div>
             <div class="hero-content">
                 <div class="hero-badge">Desarrollo de Apps Innovadoras</div>
                 <h1>Creamos Experiencias Digitales que <span style="color: var(--accent)">Transforman Industrias</span></h1>
@@ -874,10 +888,10 @@
             </div>
         </div>
         <div class="hero-visual">
-			<div class="app-mockup">
-				<img src="images/app-mockup-screenshot.png" alt="Appstracta App" class="mockup-img">
-			</div>
-		</div>
+            <div class="app-mockup">
+                <img src="images/app-mockup-screenshot.png" alt="Appstracta App" class="mockup-img">
+            </div>
+        </div>
     </section>
 
     <!-- Apps Section -->
@@ -894,8 +908,8 @@
                         <img src="logos/jornadas-agricolas-logo.png" alt="Jornadas Agrícolas">
                     </div>
                     <h3>Jornadas Agrícolas</h3>
-                    <p>Ayudando a los trabajadores agrícolas a controlar su salario</p>
-                    <a href="#" class="app-link">
+                    <p>Ayudando a los trabajadores agrícolas a controlar su salario y gestionar sus jornadas laborales de forma eficiente.</p>
+                    <a href="https://apps.apple.com/es/app/jornadas-agrícolas/id6473667904" target="_blank" class="app-link">
                         Descargar App
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -906,9 +920,9 @@
                     </div>
                     <h3>Adivina la Canción</h3>
                     <p>La plataforma de entretenimiento musical más divertida, con desafíos y competencias en tiempo real.</p>
-                    <a href="#" class="app-link">
-                        Descargar App
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="#" class="app-link coming-soon">
+                        Próximamente
+                        <i class="fas fa-clock"></i>
                     </a>
                 </div>
                 <div class="app-card">
@@ -916,10 +930,10 @@
                         <img src="logos/piverse-logo.png" alt="PiVerse">
                     </div>
                     <h3>PiVerse</h3>
-                    <p>Social Hub para el ecosistema Pi Network.</p>
-                    <a href="#" class="app-link">
+                    <p>Social Hub para el ecosistema Pi Network. Conecta con la comunidad y descubre las últimas novedades.</p>
+                    <a href="#" class="app-link coming-soon">
                         Próximamente
-                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-clock"></i>
                     </a>
                 </div>
             </div>
@@ -935,10 +949,10 @@
                     <h2 class="section-title">Nuestras Aplicaciones en Detalle</h2>
                 </div>
                 <div class="portfolio-controls">
-                    <button class="portfolio-btn">
+                    <button class="portfolio-btn" id="prev-portfolio">
                         <i class="fas fa-arrow-left"></i>
                     </button>
-                    <button class="portfolio-btn">
+                    <button class="portfolio-btn" id="next-portfolio">
                         <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
@@ -950,13 +964,13 @@
                     </div>
                     <div class="portfolio-content">
                         <h3>Jornadas Agrícolas</h3>
-                        <p>Aplicación integral para la gestión inteligente del salario del trabajador, adaptado al sector agrícola. Con opción de exportación de datos en pormato PDF</p>
+                        <p>Aplicación integral para la gestión inteligente del salario del trabajador, adaptado al sector agrícola. Con opción de exportación de datos en formato PDF y seguimiento detallado de jornadas.</p>
                         <div class="portfolio-tags">
                             <span class="tag">Agricultura</span>
-                            <span class="tag">IoT</span>
-                            <span class="tag">Analítica</span>
+                            <span class="tag">Productividad</span>
+                            <span class="tag">Gestión</span>
                         </div>
-                        <a href="#" class="portfolio-link">
+                        <a href="https://apps.apple.com/es/app/jornadas-agrícolas/id6473667904" target="_blank" class="portfolio-link">
                             Descargar en App Store
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -974,9 +988,9 @@
                             <span class="tag">Música</span>
                             <span class="tag">Gamificación</span>
                         </div>
-                        <a href="#" class="portfolio-link">
-                            Descargar en Google Play
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="#" class="portfolio-link coming-soon">
+                            Próximamente
+                            <i class="fas fa-clock"></i>
                         </a>
                     </div>
                 </div>
@@ -986,15 +1000,15 @@
                     </div>
                     <div class="portfolio-content">
                         <h3>PiVerse</h3>
-                        <p>Red social para el ecosistema de Pi Network. Con integración de pagos en $Pi para propinas y market P2P</p>
+                        <p>Red social para el ecosistema de Pi Network. Con integración de pagos en $Pi para propinas y market P2P. Conecta con la comunidad global de Pi.</p>
                         <div class="portfolio-tags">
-                            <span class="tag">Educación</span>
-                            <span class="tag">Realidad Aumentada</span>
-                            <span class="tag">Matemáticas</span>
+                            <span class="tag">Blockchain</span>
+                            <span class="tag">Social</span>
+                            <span class="tag">Pi Network</span>
                         </div>
-                        <a href="#" class="portfolio-link">
+                        <a href="#" class="portfolio-link coming-soon">
                             Próximamente
-                            <i class="fas fa-arrow-right"></i>
+                            <i class="fas fa-clock"></i>
                         </a>
                     </div>
                 </div>
@@ -1004,15 +1018,15 @@
                     </div>
                     <div class="portfolio-content">
                         <h3>Onuba+</h3>
-                        <p>La red Social de la Provincia de Huelva. Un lugar de encentro para onubenses con publicaciones por localidad y feed general</p>
+                        <p>La red Social de la Provincia de Huelva. Un lugar de encuentro para onubenses con publicaciones por localidad y feed general. Promueve el comercio local y el turismo.</p>
                         <div class="portfolio-tags">
-                            <span class="tag">Servicios Locales</span>
-                            <span class="tag">Comercio</span>
+                            <span class="tag">Social Local</span>
                             <span class="tag">Comunidad</span>
+                            <span class="tag">Huelva</span>
                         </div>
-                        <a href="#" class="portfolio-link">
+                        <a href="#" class="portfolio-link coming-soon">
                             Próximamente
-                            <i class="fas fa-arrow-right"></i>
+                            <i class="fas fa-clock"></i>
                         </a>
                     </div>
                 </div>
@@ -1025,7 +1039,7 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number">500K+</div>
+                    <div class="stat-number">10K+</div>
                     <div class="stat-text">Descargas Totales</div>
                 </div>
                 <div class="stat-item">
@@ -1033,55 +1047,12 @@
                     <div class="stat-text">Valoración Media</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-text">Premios Tecnológicos</div>
+                    <div class="stat-number">3</div>
+                    <div class="stat-text">Apps Publicadas</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">5</div>
+                    <div class="stat-number">2</div>
                     <div class="stat-text">Años Innovando</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="team" id="equipo">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-subtitle">Nuestro Equipo</div>
-                <h2 class="section-title">Mentes Creativas Detrás de Nuestras Apps</h2>
-                <p class="section-desc">Un equipo multidisciplinar de expertos apasionados por crear experiencias digitales excepcionales.</p>
-            </div>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img">
-                        <i class="fas fa-user" style="font-size: 4rem;"></i>
-                    </div>
-                    <div class="team-content">
-                        <h3>Alex Rodríguez</h3>
-                        <div class="role">CEO & Fundador</div>
-                        <p>Visionario con más de 10 años en desarrollo de software y estrategia de producto.</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img">
-                        <i class="fas fa-user" style="font-size: 4rem;"></i>
-                    </div>
-                    <div class="team-content">
-                        <h3>Marta Sánchez</h3>
-                        <div class="role">Directora de Diseño</div>
-                        <p>Especialista en UX/UI con experiencia en crear interfaces intuitivas y atractivas.</p>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img">
-                        <i class="fas fa-user" style="font-size: 4rem;"></i>
-                    </div>
-                    <div class="team-content">
-                        <h3>David Chen</h3>
-                        <div class="role">Líder de Desarrollo</div>
-                        <p>Ingeniero de software especializado en arquitecturas escalables y tecnologías móviles.</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1109,19 +1080,19 @@
                     <h3>Appstracta</h3>
                     <p>Desarrollamos aplicaciones móviles innovadoras que transforman industrias y mejoran la vida de las personas.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="https://twitter.com/appstracta" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com/company/appstracta" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com/appstracta" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:info@appstracta.app"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
                     <h3>Nuestras Apps</h3>
                     <ul>
-                        <li><a href="#">Jornadas Agrícolas</a></li>
-                        <li><a href="#">Adivina la Canción</a></li>
-                        <li><a href="#">PiVerse</a></li>
-                        <li><a href="#">Onuba+</a></li>
+                        <li><a href="https://apps.apple.com/es/app/jornadas-agrícolas/id6473667904" target="_blank">Jornadas Agrícolas</a></li>
+                        <li><a href="#apps">Adivina la Canción</a></li>
+                        <li><a href="#apps">PiVerse</a></li>
+                        <li><a href="#apps">Onuba+</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1129,22 +1100,22 @@
                     <ul>
                         <li><a href="#inicio">Inicio</a></li>
                         <li><a href="#apps">Nuestras Apps</a></li>
-                        <li><a href="#equipo">Equipo</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="footer-col footer-newsletter">
                     <h3>Newsletter</h3>
                     <p>Suscríbete para recibir actualizaciones sobre nuestras apps y nuevos lanzamientos.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Tu email">
+                    <form class="newsletter-form" id="newsletter-form">
+                        <input type="email" placeholder="Tu email" required>
                         <button type="submit"><i class="fas fa-paper-plane"></i></button>
                     </form>
                     <p style="font-size: 0.85rem;">Respetamos tu privacidad. Nunca compartimos tu información.</p>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Appstracta. Todos los derechos reservados.</p>
+                <p>&copy; 2024 Appstracta. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -1153,7 +1124,8 @@
         // Mobile menu toggle
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             const nav = document.querySelector('nav ul');
-            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            const isVisible = nav.style.display === 'flex';
+            nav.style.display = isVisible ? 'none' : 'flex';
         });
         
         // Header scroll effect
@@ -1191,11 +1163,52 @@
             });
         });
         
-        // Portfolio navigation (placeholder functionality)
-        document.querySelectorAll('.portfolio-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // In a real implementation, this would navigate the portfolio
-                alert('Funcionalidad de navegación del portfolio - En una implementación real, esto navegaría entre proyectos.');
+        // Portfolio navigation
+        let currentPortfolioIndex = 0;
+        const portfolioCards = document.querySelectorAll('.portfolio-card');
+        const portfolioGrid = document.querySelector('.portfolio-grid');
+        
+        document.getElementById('prev-portfolio').addEventListener('click', function() {
+            if (currentPortfolioIndex > 0) {
+                currentPortfolioIndex--;
+                updatePortfolioView();
+            }
+        });
+        
+        document.getElementById('next-portfolio').addEventListener('click', function() {
+            if (currentPortfolioIndex < portfolioCards.length - 1) {
+                currentPortfolioIndex++;
+                updatePortfolioView();
+            }
+        });
+        
+        function updatePortfolioView() {
+            const offset = -currentPortfolioIndex * 100;
+            portfolioGrid.style.transform = `translateX(${offset}%)`;
+        }
+        
+        // Newsletter form
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert(`¡Gracias por suscribirte con el email: ${email}! Te mantendremos informado sobre nuestros lanzamientos.`);
+            this.reset();
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', function() {
+                if(window.innerWidth <= 768) {
+                    document.querySelector('nav ul').style.display = 'none';
+                }
+            });
+        });
+        
+        // Coming soon links
+        document.querySelectorAll('.coming-soon').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('¡Esta aplicación estará disponible próximamente! Síguenos en nuestras redes sociales para estar al tanto de los lanzamientos.');
             });
         });
     </script>
