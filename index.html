@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appstracta | Desarrollamos Apps Innovadoras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --gray: #95a5a6;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 180px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/hero-bg.jpg') center/cover;
+            opacity: 0.1;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: #c0392b;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(231, 76, 60, 0.4);
+        }
+        
+        .hero-visual {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .app-mockup {
+		width: 280px;
+		height: 560px;
+		background: #2c3e50;
+		border-radius: 40px;
+		border: 12px solid #2c3e50;
+		position: relative;
+		overflow: hidden;
+		box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+		animation: float 6s ease-in-out infinite;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	    }
+
+		.mockup-img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			border-radius: 28px;
+			background: white;
+		}
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Apps Section */
+        .apps {
+            padding: 120px 0;
+            background: var(--light);
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+        
+        .section-subtitle {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .section-desc {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .app-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+        
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .app-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .app-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            background: rgba(231, 76, 60, 0.1);
+        }
+        
+        .app-logo img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .app-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .app-card p {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+        
+        .app-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        
+        .app-link:hover {
+            color: var(--accent);
+            gap: 12px;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 120px 0;
+            background: white;
+        }
+        
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 60px;
+        }
+        
+        .portfolio-controls {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .portfolio-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--light);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--primary);
+        }
+        
+        .portfolio-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background: white;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .portfolio-img {
+            height: 240px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .portfolio-img img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+        
+        .portfolio-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 80, 0.7);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .portfolio-card:hover .portfolio-img::after {
+            opacity: 1;
+        }
+        
+        .portfolio-content {
+            padding: 25px;
+        }
+        
+        .portfolio-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .portfolio-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .tag {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--accent);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .portfolio-link:hover {
+            color: var(--accent);
+            gap: 12px;
+        }
+        
+        /* Stats Section */
+        .stats {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .stat-item {
+            padding: 30px 20px;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-text {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 120px 0;
+            background: var(--light);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .team-img {
+            height: 250px;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+        
+        .team-content {
+            padding: 25px;
+        }
+        
+        .team-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .team-content .role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .team-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 120px 0;
+            background: white;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-about p {
+            opacity: 0.7;
+            margin-bottom: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-newsletter p {
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        .newsletter-form input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .newsletter-form button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-form button:hover {
+            background: #c0392b;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .hero-visual {
+                display: none;
+            }
+            
+            .hero {
+                text-align: center;
+                padding: 150px 0 100px;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .header-actions {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .apps-grid,
+            .portfolio-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logos/appstracta-logo.png" alt="Appstracta" class="logo-img">
+                <div class="logo-text">APPSTRACTA</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#apps">Nuestras Apps</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#equipo">Equipo</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#apps" class="btn-outline">Descubrir Apps</a>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Desarrollo de Apps Innovadoras</div>
+                <h1>Creamos Experiencias Digitales que <span style="color: var(--accent)">Transforman Industrias</span></h1>
+                <p>En Appstracta, desarrollamos aplicaciones propias que resuelven problemas reales y generan valor para millones de usuarios en todo el mundo.</p>
+                <a href="#apps" class="btn-primary">
+                    Descubrir Nuestras Apps
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual">
+			<div class="app-mockup">
+				<img src="images/app-mockup-screenshot.png" alt="Appstracta App" class="mockup-img">
+			</div>
+		</div>
+    </section>
+
+    <!-- Apps Section -->
+    <section class="apps" id="apps">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Nuestras Aplicaciones</div>
+                <h2 class="section-title">Innovación en Cada Experiencia</h2>
+                <p class="section-desc">Desarrollamos aplicaciones propias que combinan tecnología de vanguardia con diseño excepcional para ofrecer soluciones únicas.</p>
+            </div>
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-logo">
+                        <img src="logos/jornadas-agricolas-logo.png" alt="Jornadas Agrícolas">
+                    </div>
+                    <h3>Jornadas Agrícolas</h3>
+                    <p>Ayudando a los trabajadores agrícolas a controlar su salario</p>
+                    <a href="#" class="app-link">
+                        Descargar App
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="app-card">
+                    <div class="app-logo">
+                        <img src="logos/adivina-la-cancion-logo.png" alt="Adivina la Canción">
+                    </div>
+                    <h3>Adivina la Canción</h3>
+                    <p>La plataforma de entretenimiento musical más divertida, con desafíos y competencias en tiempo real.</p>
+                    <a href="#" class="app-link">
+                        Descargar App
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="app-card">
+                    <div class="app-logo">
+                        <img src="logos/piverse-logo.png" alt="PiVerse">
+                    </div>
+                    <h3>PiVerse</h3>
+                    <p>Social Hub para el ecosistema Pi Network.</p>
+                    <a href="#" class="app-link">
+                        Próximamente
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="portfolio-header">
+                <div class="section-header" style="text-align: left; margin: 0;">
+                    <div class="section-subtitle">Portfolio de Éxitos</div>
+                    <h2 class="section-title">Nuestras Aplicaciones en Detalle</h2>
+                </div>
+                <div class="portfolio-controls">
+                    <button class="portfolio-btn">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button class="portfolio-btn">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="logos/jornadas-agricolas-logo.png" alt="Jornadas Agrícolas">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Jornadas Agrícolas</h3>
+                        <p>Aplicación integral para la gestión inteligente del salario del trabajador, adaptado al sector agrícola. Con opción de exportación de datos en pormato PDF</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Agricultura</span>
+                            <span class="tag">IoT</span>
+                            <span class="tag">Analítica</span>
+                        </div>
+                        <a href="#" class="portfolio-link">
+                            Descargar en App Store
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="logos/adivina-la-cancion-logo.png" alt="Adivina la Canción">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Adivina la Canción</h3>
+                        <p>Plataforma de entretenimiento musical con desafíos interactivos, integración con servicios de streaming y competencias en tiempo real que conecta a amantes de la música de todo el mundo.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Entretenimiento</span>
+                            <span class="tag">Música</span>
+                            <span class="tag">Gamificación</span>
+                        </div>
+                        <a href="#" class="portfolio-link">
+                            Descargar en Google Play
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="logos/piverse-logo.png" alt="PiVerse">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>PiVerse</h3>
+                        <p>Red social para el ecosistema de Pi Network. Con integración de pagos en $Pi para propinas y market P2P</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Educación</span>
+                            <span class="tag">Realidad Aumentada</span>
+                            <span class="tag">Matemáticas</span>
+                        </div>
+                        <a href="#" class="portfolio-link">
+                            Próximamente
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-img">
+                        <img src="logos/onuba-plus-logo.png" alt="Onuba+">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Onuba+</h3>
+                        <p>La red Social de la Provincia de Huelva. Un lugar de encentro para onubenses con publicaciones por localidad y feed general</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Servicios Locales</span>
+                            <span class="tag">Comercio</span>
+                            <span class="tag">Comunidad</span>
+                        </div>
+                        <a href="#" class="portfolio-link">
+                            Próximamente
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats" id="nosotros">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500K+</div>
+                    <div class="stat-text">Descargas Totales</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.8★</div>
+                    <div class="stat-text">Valoración Media</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-text">Premios Tecnológicos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-text">Años Innovando</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="equipo">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Nuestro Equipo</div>
+                <h2 class="section-title">Mentes Creativas Detrás de Nuestras Apps</h2>
+                <p class="section-desc">Un equipo multidisciplinar de expertos apasionados por crear experiencias digitales excepcionales.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-img">
+                        <i class="fas fa-user" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="team-content">
+                        <h3>Alex Rodríguez</h3>
+                        <div class="role">CEO & Fundador</div>
+                        <p>Visionario con más de 10 años en desarrollo de software y estrategia de producto.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-img">
+                        <i class="fas fa-user" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="team-content">
+                        <h3>Marta Sánchez</h3>
+                        <div class="role">Directora de Diseño</div>
+                        <p>Especialista en UX/UI con experiencia en crear interfaces intuitivas y atractivas.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-img">
+                        <i class="fas fa-user" style="font-size: 4rem;"></i>
+                    </div>
+                    <div class="team-content">
+                        <h3>David Chen</h3>
+                        <div class="role">Líder de Desarrollo</div>
+                        <p>Ingeniero de software especializado en arquitecturas escalables y tecnologías móviles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contacto">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Listo para Descubrir Nuestras Apps?</h2>
+                <p>Descarga nuestras aplicaciones y únete a nuestra comunidad de usuarios satisfechos.</p>
+                <a href="#apps" class="btn-primary">
+                    Ver Todas Nuestras Apps
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col footer-about">
+                    <h3>Appstracta</h3>
+                    <p>Desarrollamos aplicaciones móviles innovadoras que transforman industrias y mejoran la vida de las personas.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Nuestras Apps</h3>
+                    <ul>
+                        <li><a href="#">Jornadas Agrícolas</a></li>
+                        <li><a href="#">Adivina la Canción</a></li>
+                        <li><a href="#">PiVerse</a></li>
+                        <li><a href="#">Onuba+</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Empresa</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#apps">Nuestras Apps</a></li>
+                        <li><a href="#equipo">Equipo</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Suscríbete para recibir actualizaciones sobre nuestras apps y nuevos lanzamientos.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <p style="font-size: 0.85rem;">Respetamos tu privacidad. Nunca compartimos tu información.</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Appstracta. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(window.innerWidth <= 768) {
+                        document.querySelector('nav ul').style.display = 'none';
+                    }
+                }
+            });
+        });
+        
+        // Portfolio navigation (placeholder functionality)
+        document.querySelectorAll('.portfolio-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // In a real implementation, this would navigate the portfolio
+                alert('Funcionalidad de navegación del portfolio - En una implementación real, esto navegaría entre proyectos.');
+            });
+        });
+    </script>
+</body>
+</html>
