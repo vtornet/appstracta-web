@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appstracta Films | Videoclips Musicales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --gray: #95a5a6;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Hero Films */
+        .hero-films {
+            background: var(--gradient);
+            color: white;
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero-films h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .hero-films p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Videos Grid */
+        .videos-section {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+        
+        .section-subtitle {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .section-desc {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+        }
+        
+        .video-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-content {
+            padding: 30px;
+        }
+        
+        .video-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            line-height: 1.3;
+        }
+        
+        .video-description {
+            color: var(--gray);
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .music-platforms {
+            margin-bottom: 25px;
+        }
+        
+        .music-platforms h4 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+        
+        .platform-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: var(--light);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text);
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .platform-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .platform-link i {
+            font-size: 1.1rem;
+        }
+        
+        .platform-link.spotify { background: rgba(30, 215, 96, 0.1); }
+        .platform-link.apple { background: rgba(251, 85, 85, 0.1); }
+        .platform-link.youtube { background: rgba(255, 0, 0, 0.1); }
+        .platform-link.amazon { background: rgba(0, 168, 225, 0.1); }
+        .platform-link.tidal { background: rgba(0, 0, 0, 0.1); }
+        
+        .platform-link.spotify:hover { background: #1ED760; }
+        .platform-link.apple:hover { background: #FB5555; }
+        .platform-link.youtube:hover { background: #FF0000; }
+        .platform-link.amazon:hover { background: #00A8E1; }
+        .platform-link.tidal:hover { background: #000000; }
+        
+        /* Stats Section */
+        .stats {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .stat-item {
+            padding: 30px 20px;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-text {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        /* CTA Section */
+        .cta-films {
+            padding: 100px 0;
+            background: white;
+            text-align: center;
+        }
+        
+        .cta-films h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .cta-films p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: #c0392b;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(231, 76, 60, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-about p {
+            opacity: 0.7;
+            margin-bottom: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-films h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .videos-grid {
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero-films {
+                padding: 150px 0 80px;
+            }
+            
+            .hero-films h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .videos-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .video-card {
+                margin: 0 auto;
+                max-width: 500px;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .platforms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-films h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-films h2 {
+                font-size: 2rem;
+            }
+            
+            .video-content h3 {
+                font-size: 1.4rem;
+            }
+            
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+                    <img src="logos/appstracta-logo.png" alt="Appstracta" class="logo-img">
+                    <div class="logo-text">APPSTRACTA</div>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#apps">Apps</a></li>
+                    <li><a href="index.html#portfolio">Portfolio</a></li>
+                    <li><a href="films.html" style="color: var(--accent);">Videoclips</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Films -->
+    <section class="hero-films">
+        <div class="container">
+            <h1>Appstracta Films</h1>
+            <p>No busco la perfección, solo disfrutar del proceso. Aquí encontrarás desde paseos por nuestra costa hasta gritos de paz, creados con herramientas digitales por el puro placer de contar algo</p>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section class="videos-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Videoclips Musicales</div>
+                <h2 class="section-title">Nuestras Producciones</h2>
+                <p class="section-desc">Música, imágenes y algo de IA.</p>
+            </div>
+            
+            <div class="videos-grid">
+                <!-- El Lienzo del Sol -->
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/R0nwiVdM-Nw" 
+                                title="El Lienzo del Sol" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>El Lienzo del Sol</h3>
+                        <div class="video-description">
+                            Una apertura luminosa que rinde homenaje a la luz de Ayamonte. Es una canción que camina entre la orilla del río y el mar, pintando con música ese despertar naranja donde el alma se queda anclada en la laguna.
+                        </div>
+                        <div class="music-platforms">
+                            <h4><i class="fas fa-music"></i> Escuchar en:</h4>
+                            <div class="platforms-grid">
+                                <a href="https://open.spotify.com/intl-es/album/6yEg5mbcjlhlVuf6fRhnuR" target="_blank" class="platform-link spotify">
+                                    <i class="fab fa-spotify"></i> Spotify
+                                </a>
+                                <a href="https://music.apple.com/es/album/el-lienzo-del-sol-single/1860818819" target="_blank" class="platform-link apple">
+                                    <i class="fab fa-apple"></i> Apple Music
+                                </a>
+                                <a href="https://music.youtube.com/watch?v=hzS06QW0ct8" target="_blank" class="platform-link youtube">
+                                    <i class="fab fa-youtube"></i> YouTube Music
+                                </a>
+                                <a href="https://music.amazon.es/albums/B0G6KV4VSJ" target="_blank" class="platform-link amazon">
+                                    <i class="fab fa-amazon"></i> Amazon Music
+                                </a>
+                                <a href="https://tidal.com/track/481176654/u" target="_blank" class="platform-link tidal">
+                                    <i class="fas fa-wave-square"></i> Tidal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Puente de Hierro -->
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/6muVSk4CEeU" 
+                                title="Puente de Hierro" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Puente de Hierro</h3>
+                        <div class="video-description">
+                            Un viaje nostálgico que atraviesa el emblemático puente para conectar con los recuerdos de Isla Cristina. Entre el olor a salitre y eucalipto, la letra evoca las tardes de verano, las pandillas en el muelle y la fe compartida bajo el manto de la Virgen del Carmen.
+                        </div>
+                        <div class="music-platforms">
+                            <h4><i class="fas fa-music"></i> Escuchar en:</h4>
+                            <div class="platforms-grid">
+                                <a href="https://open.spotify.com/intl-es/track/130OcLbFoVy31HQwfA8P3F" target="_blank" class="platform-link spotify">
+                                    <i class="fab fa-spotify"></i> Spotify
+                                </a>
+                                <a href="https://music.youtube.com/watch?v=BZCtF7l--Zs" target="_blank" class="platform-link youtube">
+                                    <i class="fab fa-youtube"></i> YouTube Music
+                                </a>
+                                <a href="https://music.amazon.es/albums/B0G34LRB2T" target="_blank" class="platform-link amazon">
+                                    <i class="fab fa-amazon"></i> Amazon Music
+                                </a>
+                                <a href="https://tidal.com/track/475442697/u" target="_blank" class="platform-link tidal">
+                                    <i class="fas fa-wave-square"></i> Tidal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Donde Nace la Sal -->
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/pY2sAkkG2-w" 
+                                title="Donde Nace la Sal" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Donde Nace la Sal</h3>
+                        <div class="video-description">
+                            Un himno de identidad y orgullo marinero. Con aromas a marisma en el viento, esta canción celebra las raíces de Isla Cristina, el esfuerzo de sus pescadores y la pasión de un pueblo que vive al ritmo del 3x4 de su carnaval.
+                        </div>
+                        <div class="music-platforms">
+                            <h4><i class="fas fa-music"></i> Escuchar en:</h4>
+                            <div class="platforms-grid">
+                                <a href="https://open.spotify.com/intl-es/album/074ESWDuzKOpMcjy1v6Hjx" target="_blank" class="platform-link spotify">
+                                    <i class="fab fa-spotify"></i> Spotify
+                                </a>
+                                <a href="https://music.apple.com/us/song/donde-nace-la-sal/1862817389" target="_blank" class="platform-link apple">
+                                    <i class="fab fa-apple"></i> Apple Music
+                                </a>
+                                <a href="https://music.youtube.com/playlist?list=OLAK5uy_kHnYFcHgf6Gtb2HcqnTjyZWCnNW7y3Y9Y" target="_blank" class="platform-link youtube">
+                                    <i class="fab fa-youtube"></i> YouTube Music
+                                </a>
+                                <a href="https://music.amazon.es/tracks/B0G92K1G22" target="_blank" class="platform-link amazon">
+                                    <i class="fab fa-amazon"></i> Amazon Music
+                                </a>
+                                <a href="https://tidal.com/track/483304749/u" target="_blank" class="platform-link tidal">
+                                    <i class="fas fa-wave-square"></i> Tidal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aquí fue -->
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/fxy1H9_IHVc" 
+                                title="Aquí fue" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Aquí fue</h3>
+                        <div class="video-description">
+                            Una balada íntima que recorre los rincones de una historia de amor grabada en las calles de Lepe. La canción revive el primer beso y los conciertos compartidos, transformando la ausencia en un eco que busca respuestas en cada rincón de la ciudad.
+                        </div>
+                        <div class="music-platforms">
+                            <h4><i class="fas fa-music"></i> Escuchar en:</h4>
+                            <div class="platforms-grid">
+                                <a href="https://open.spotify.com/track/3mx8ctwbWcOAQZtuVzVg1g" target="_blank" class="platform-link spotify">
+                                    <i class="fab fa-spotify"></i> Spotify
+                                </a>
+                                <a href="https://music.apple.com/es/song/aqu%C3%AD-fue/1855368915" target="_blank" class="platform-link apple">
+                                    <i class="fab fa-apple"></i> Apple Music
+                                </a>
+                                <a href="https://music.youtube.com/watch?v=8srSjcMxAQk" target="_blank" class="platform-link youtube">
+                                    <i class="fab fa-youtube"></i> YouTube Music
+                                </a>
+                                <a href="https://music.amazon.es/albums/B0G35CXJMQ" target="_blank" class="platform-link amazon">
+                                    <i class="fab fa-amazon"></i> Amazon Music
+                                </a>
+                                <a href="https://tidal.com/track/475489656/u" target="_blank" class="platform-link tidal">
+                                    <i class="fas fa-wave-square"></i> Tidal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Origen de la Felicidad -->
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/NOnGvXjIK8Y" 
+                                title="Origen de la Felicidad" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Origen de la Felicidad</h3>
+                        <div class="video-description">
+                            Un tributo a la esencia de Lepe, desde la fresa de sus campos hasta la ermita de la Bella. Describe una tierra de manos curtidas y horizontes de pinar donde la felicidad no necesita guion, pues nace directamente de la raíz y la fe de su gente.
+                        </div>
+                        <div class="music-platforms">
+                            <h4><i class="fas fa-music"></i> Escuchar en:</h4>
+                            <div class="platforms-grid">
+                                <a href="https://open.spotify.com/intl-es/track/7eovbsqkldOVggn4di3UEr" target="_blank" class="platform-link spotify">
+                                    <i class="fab fa-spotify"></i> Spotify
+                                </a>
+                                <a href="https://music.apple.com/es/song/origen-de-la-felicidad/1859423815" target="_blank" class="platform-link apple">
+                                    <i class="fab fa-apple"></i> Apple Music
+                                </a>
+                                <a href="https://music.youtube.com/watch?v=TIQrJYm-FsM" target="_blank" class="platform-link youtube">
+                                    <i class="fab fa-youtube"></i> YouTube Music
+                                </a>
+                                <a href="https://music.amazon.es/albums/B0G5JW1DLF" target="_blank" class="platform-link amazon">
+                                    <i class="fab fa-amazon"></i> Amazon Music
+                                </a>
+                                <a href="https://tidal.com/album/479900783/u" target="_blank" class="platform-link tidal">
+                                    <i class="fas fa-wave-square"></i> Tidal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- La Novia del Mar -->
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/_mXNkEeUCTs" 
+                                title="La Novia del Mar" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>La Novia del Mar</h3>
+                        <div class="video-description">
+                            Una composición poética que narra el romance eterno entre el mar y la ría de Huelva. Con plumas de blanca paloma y aroma a incienso, la canción personifica la geografía onubense en una historia de celos, abrazos y pasión incontrolable.
+                        </div>
+                        <div class="music-platforms">
+                            <h4><i class="fas fa-music"></i> Escuchar en:</h4>
+                            <div class="platforms-grid">
+                                <a href="https://open.spotify.com/intl-es/album/7DpDzVZ9xtGxvCeopHVVbx" target="_blank" class="platform-link spotify">
+                                    <i class="fab fa-spotify"></i> Spotify
+                                </a>
+                                <a href="https://music.apple.com/us/song/la-novia-del-mar/1864372686" target="_blank" class="platform-link apple">
+                                    <i class="fab fa-apple"></i> Apple Music
+                                </a>
+                                <a href="https://music.youtube.com/watch?v=ANKoPFeDNNY" target="_blank" class="platform-link youtube">
+                                    <i class="fab fa-youtube"></i> YouTube Music
+                                </a>
+                                <a href="https://music.amazon.es/tracks/B0GCKXC21R" target="_blank" class="platform-link amazon">
+                                    <i class="fab fa-amazon"></i> Amazon Music
+                                </a>
+                                <a href="https://tidal.com/artist/70113142/u" target="_blank" class="platform-link tidal">
+                                    <i class="fas fa-wave-square"></i> Tidal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- La Flor ante el Fuego -->
+                <div class="video-card">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/JoZxy_bY19A" 
+                                title="La Flor ante el Fuego" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>La Flor ante el Fuego</h3>
+                        <div class="video-description">
+                            Una pieza profunda y emotiva que reflexiona sobre la inocencia perdida y la crudeza de la guerra. Es un grito de paz que busca la victoria de la sonrisa sobre el miedo y el triunfo del amor como altavoz necesario para la humanidad.
+                        </div>
+                        <div class="music-platforms">
+                            <h4><i class="fas fa-music"></i> Escuchar en:</h4>
+                            <div class="platforms-grid">
+                                <a href="https://open.spotify.com/intl-es/album/6QJoxEhZlmD5MlnucAoJUL" target="_blank" class="platform-link spotify">
+                                    <i class="fab fa-spotify"></i> Spotify
+                                </a>
+                                <a href="https://music.apple.com/es/album/la-flor-ante-el-fuego/1866432539" target="_blank" class="platform-link apple">
+                                    <i class="fab fa-apple"></i> Apple Music
+                                </a>
+                                <a href="https://music.amazon.es/albums/B0GDYST1DC" target="_blank" class="platform-link amazon">
+                                    <i class="fab fa-amazon"></i> Amazon Music
+                                </a>
+                                <a href="https://tidal.com/track/486934048/u" target="_blank" class="platform-link tidal">
+                                    <i class="fas fa-wave-square"></i> Tidal
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">7</div>
+                    <div class="stat-text">Videoclips Producidos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-text">Plataformas Musicales</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100K+</div>
+                    <div class="stat-text">Reproducciones</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-text">Hecho por afición</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-films">
+        <div class="container">
+            <h2>Gracias por asomarte a mis creaciones</h2>
+            <p>Hago esto de forma totalmente amateur. Si te gusta alguna de las canciones o simplemente quieres charlar sobre cómo uso la IA, estaré encantado de recibir un saludo.</p>
+            <a href="mailto:contact@appstracta.app?subject=Consulta%20Appstracta%20Films" class="btn-primary">
+            Contactar a Films
+            <i class="fas fa-envelope"></i>
+        </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col footer-about">
+                    <h3>Appstracta Films</h3>
+                    <p>Producción amateur de videoclips musicales realizados con pasión por el arte audiovisual.</p>
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/@AppstractaFilms" target="_blank" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61584528645817" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/appstracta?igsh=dTF4MTg4ajh1cXNo" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="mailto:contact@appstracta.app?subject=Consulta%20Appstracta%20Films" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Videoclips</h3>
+                    <ul>
+                        <li><a href="#el-lienzo-del-sol">El Lienzo del Sol</a></li>
+                        <li><a href="#puente-de-hierro">Puente de Hierro</a></li>
+                        <li><a href="#donde-nace-la-sal">Donde Nace la Sal</a></li>
+                        <li><a href="#aqui-fue">Aquí fue</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Más Canciones</h3>
+                    <ul>
+                        <li><a href="#origen-felicidad">Origen de la Felicidad</a></li>
+                        <li><a href="#novia-del-mar">La Novia del Mar</a></li>
+                        <li><a href="#flor-fuego">La Flor ante el Fuego</a></li>
+                        <li><a href="index.html">Inicio Appstracta</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contacto Films</h3>
+                    <p>contact@appstracta.app</p>
+                    <p>Producción audiovisual</p>
+                    <p>Huelva, España</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Proyectos personales · Appstracta</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">Todas las canciones disponibles en las principales plataformas musicales.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            const isVisible = nav.style.display === 'flex';
+            nav.style.display = isVisible ? 'none' : 'flex';
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', function() {
+                if(window.innerWidth <= 768) {
+                    document.querySelector('nav ul').style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

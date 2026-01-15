@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appstracta Formats | Una Sola Voz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #9b59b6;  /* Morado distintivo para Formats */
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --gray: #95a5a6;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Hero Formats */
+        .hero-formats {
+            background: var(--gradient);
+            color: white;
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .hero-formats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .format-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        .format-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Format Details */
+        .format-details {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+        
+        .section-subtitle {
+            display: inline-block;
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .section-desc {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .concept-card {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 40px 30px;
+            border-left: 5px solid var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .concept-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(155, 89, 182, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+        
+        .concept-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .concept-card p {
+            color: var(--gray);
+        }
+        
+        /* Format Specs */
+        .format-specs {
+            padding: 80px 0;
+            background: var(--light);
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .spec-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .spec-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .spec-card h4 i {
+            color: var(--secondary);
+        }
+        
+        .spec-list {
+            list-style: none;
+        }
+        
+        .spec-list li {
+            padding: 8px 0;
+            color: var(--gray);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .spec-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-list li i {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .cta-formats {
+            padding: 100px 0;
+            background: white;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .cta-formats h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .cta-formats p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(155, 89, 182, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: #8e44ad;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(155, 89, 182, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-about p {
+            opacity: 0.7;
+            margin-bottom: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        
+        .availability {
+            background: rgba(155, 89, 182, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 40px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .availability h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .format-title {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero-formats {
+                padding: 150px 0 80px;
+            }
+            
+            .format-title {
+                font-size: 2.5rem;
+            }
+            
+            .format-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .concept-grid,
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .format-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-formats h2 {
+                font-size: 2rem;
+            }
+            
+            .format-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+                    <img src="logos/appstracta-logo.png" alt="Appstracta" class="logo-img">
+                    <div class="logo-text">APPSTRACTA</div>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#apps">Apps</a></li>
+                    <li><a href="index.html#portfolio">Portfolio</a></li>
+                    <li><a href="films.html">Videoclips</a></li>
+                    <li><a href="formats.html" style="color: var(--secondary);">Formats</a></li>
+                    <li><a href="mailto:contact@appstracta.app">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Formats -->
+    <section class="hero-formats">
+        <div class="container">
+            <h1 class="format-title">UNA SOLA VOZ</h1>
+            <p class="format-subtitle">Formato musical original donde ciudades compiten representadas por su propia ciudadanía</p>
+        </div>
+    </section>
+
+    <!-- Format Details -->
+    <section class="format-details" id="concepto-original">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Concepto Original</div>
+                <h2 class="section-title">La Ciudadanía como Protagonista</h2>
+                <p class="section-desc">
+                    Un formato musical colectivo en el que ciudades compiten representadas por su propia ciudadanía, 
+                    convirtiendo al público en el verdadero protagonista del programa. Concebido como un formato híbrido 
+                    que combina actuaciones grabadas y emisión en directo, con un fuerte enfoque en la identidad territorial 
+                    y la emoción colectiva.
+                </p>
+            </div>
+            
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Competencia Colectiva</h3>
+                    <p>Ciudades enteras compiten entre sí, representadas por sus propios habitantes. No hay participantes individuales, sino comunidades unidas por una misma voz.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Formato Híbrido</h3>
+                    <p>Combina actuaciones pregrabadas en cada ciudad con emisiones en directo desde un espacio central, creando una experiencia televisiva dinámica.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Emoción Colectiva</h3>
+                    <p>El formato potencia la identidad territorial y el orgullo local, generando una conexión emocional única entre los participantes y la audiencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Format Specs -->
+    <section class="format-specs">
+        <div class="container">
+            <div class="section-header" id="especificaciones-del-formato">
+                <div class="section-subtitle">Especificaciones</div>
+                <h2 class="section-title" id="estructura-del-formato">Estructura del Formato</h2>
+            </div>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <h4><i class="fas fa-calendar-alt"></i> Temporada</h4>
+                    <ul class="spec-list">
+                        <li><i class="fas fa-check"></i> 8-10 episodios</li>
+                        <li><i class="fas fa-check"></i> Emisión semanal</li>
+                        <li><i class="fas fa-check"></i> Gran Final en directo</li>
+                        <li><i class="fas fa-check"></i> Especiales temáticos</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h4><i class="fas fa-microphone-alt"></i> Actuaciones</h4>
+                    <ul class="spec-list">
+                        <li><i class="fas fa-check"></i> Coros ciudadanos de gran formato</li>
+                        <li><i class="fas fa-check"></i> Voces guía dentro del coro (sin protagonismo individual)</li>
+                        <li><i class="fas fa-check"></i> Repertorio seleccionado específicamente para el formato</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card">
+                    <h4><i class="fas fa-tv"></i> Producción</h4>
+                    <ul class="spec-list">
+                        <li><i class="fas fa-check"></i> Concebido para producción híbrida (grabado + directo)</li>
+                        <li><i class="fas fa-check"></i> Sistema de votación mixto (criterio técnico y participación del público)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-formats">
+        <div class="container">
+            <div class="availability" id="disponibilidad-formato">
+                <h4><i class="fas fa-bullhorn"></i> Disponibilidad</h4>
+                <p style="color: var(--gray); margin-top: 10px;">
+                    Formato disponible para su desarrollo con cadenas y productoras.
+                </p>
+            </div>
+            
+            <h2>¿Interesado en "Una Sola Voz"?</h2>
+            <p>Contacta para recibir el dossier completo del formato y explorar posibilidades de colaboración.</p>
+            <a href="mailto:contact@appstracta.app?subject=Formato%20Una%20Sola%20Voz" class="btn-primary">
+                Solicitar Dossier
+                <i class="fas fa-file-alt"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col footer-about">
+                    <h3>Appstracta Formats</h3>
+                    <p>Desarrollo de formatos televisivos innovadores que fusionan música, tecnología y participación ciudadana.</p>
+                    <div class="social-links">
+                        <a href="mailto:contact@appstracta.app?subject=Formato%20Una%20Sola%20Voz" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="films.html" title="Videoclips">
+                            <i class="fas fa-film"></i>
+                        </a>
+                        <a href="index.html" title="Apps">
+                            <i class="fas fa-mobile-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>El Formato</h3>
+                    <ul>
+                        <li><a href="#concepto-original">Concepto</a></li>
+                        <li><a href="#estructura-del-formato">Estructura</a></li>
+                        <li><a href="#especificaciones-del-formato">Especificaciones</a></li>
+                        <li><a href="#disponibilidad-formato">Disponibilidad</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contacto Formats</h3>
+                    <p>contact@appstracta.app</p>
+                    <p>Asunto: "Una Sola Voz"</p>
+                    <p>Formato televisivo</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Appstracta Formats. “Una Sola Voz” es un formato original registrado. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            const isVisible = nav.style.display === 'flex';
+            nav.style.display = isVisible ? 'none' : 'flex';
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', function() {
+                if(window.innerWidth <= 768) {
+                    document.querySelector('nav ul').style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

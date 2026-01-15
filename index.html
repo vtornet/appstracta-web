@@ -562,6 +562,77 @@
             gap: 8px;
         }
         
+            <!-- Films Section -->
+    <section class="films" id="films">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Contenido Audiovisual</div>
+                <h2 class="section-title">Appstracta Films</h2>
+                <p class="section-desc">Producción de contenido audiovisual de alta calidad para televisión, streaming y medios digitales.</p>
+            </div>
+            <div class="films-grid">
+                <div class="film-card">
+                    <div class="film-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Documentales</h3>
+                    <p>Producción de documentales innovadores sobre tecnología, innovación y transformación digital.</p>
+                </div>
+                <div class="film-card">
+                    <div class="film-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <h3>Programas de TV</h3>
+                    <p>Desarrollo y producción de formatos televisivos originales sobre apps y tecnología.</p>
+                </div>
+                <div class="film-card">
+                    <div class="film-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Contenido Digital</h3>
+                    <p>Creación de series web y contenido exclusivo para plataformas de streaming.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formats Section -->
+    <section class="formats" id="formats">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Formatos Televisivos</div>
+                <h2 class="section-title">Appstracta Formats</h2>
+                <p class="section-desc">Desarrollo de formatos innovadores para televisión que conectan tecnología y entretenimiento.</p>
+            </div>
+            <div class="formats-grid">
+                <div class="format-card">
+                    <h3>"App Masters"</h3>
+                    <p>Competición donde desarrolladores crean apps en tiempo real para resolver desafíos empresariales.</p>
+                    <div class="format-tags">
+                        <span class="tag">Entretenimiento</span>
+                        <span class="tag">Tecnología</span>
+                    </div>
+                </div>
+                <div class="format-card">
+                    <h3>"Startup Revolution"</h3>
+                    <p>Documental serie que sigue el viaje de startups tecnológicas desde la idea hasta el éxito.</p>
+                    <div class="format-tags">
+                        <span class="tag">Documental</span>
+                        <span class="tag">Educación</span>
+                    </div>
+                </div>
+                <div class="format-card">
+                    <h3>"Code to Screen"</h3>
+                    <p>Reality show donde equipos convierten código en aplicaciones que cambian industrias.</p>
+                    <div class="format-tags">
+                        <span class="tag">Reality</span>
+                        <span class="tag">Innovación</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        
         /* Stats Section */
         .stats {
             padding: 100px 0;
@@ -758,6 +829,13 @@
             .footer-container {
                 grid-template-columns: 1fr 1fr;
             }
+
+        @media (max-width: 768px) {
+            .films-grid,
+            .formats-grid {
+                grid-template-columns: 1fr;
+            }
+}
             
             .hero-visual {
                 display: none;
@@ -859,6 +937,8 @@
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#apps">Nuestras Apps</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#films">Films</a></li>
+                    <li><a href="#formats">Formats</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
@@ -879,8 +959,8 @@
             </div>
             <div class="hero-content">
                 <div class="hero-badge">Desarrollo de Apps Innovadoras</div>
-                <h1>Creamos Experiencias Digitales que <span style="color: var(--accent)">Transforman Industrias</span></h1>
-                <p>En Appstracta, desarrollamos aplicaciones propias que resuelven problemas reales y generan valor para millones de usuarios en todo el mundo.</p>
+                <h1>Proyectos Personales de <span style="color: var(--accent)">Apps y Música</span></h1>
+                <p>Desarrollo aplicaciones y creo música con vídeos como aficionado apasionado por la tecnología y el arte.</p>
                 <a href="#apps" class="btn-primary">
                     Descubrir Nuestras Apps
                     <i class="fas fa-arrow-right"></i>
@@ -898,9 +978,9 @@
     <section class="apps" id="apps">
         <div class="container">
             <div class="section-header">
-                <div class="section-subtitle">Nuestras Aplicaciones</div>
-                <h2 class="section-title">Innovación en Cada Experiencia</h2>
-                <p class="section-desc">Desarrollamos aplicaciones propias que combinan tecnología de vanguardia con diseño excepcional para ofrecer soluciones únicas.</p>
+                <div class="section-subtitle">Mis Aplicaciones</div>
+                <h2 class="section-title">Proyectos Personales</h2>
+                <p class="section-desc">Apps que desarrollo como afición, enfocadas en resolver necesidades cotidianas de forma sencilla.</p>
             </div>
             <div class="apps-grid">
                 <div class="app-card">
@@ -945,8 +1025,8 @@
         <div class="container">
             <div class="portfolio-header">
                 <div class="section-header" style="text-align: left; margin: 0;">
-                    <div class="section-subtitle">Portfolio de Éxitos</div>
-                    <h2 class="section-title">Nuestras Aplicaciones en Detalle</h2>
+                    <div class="section-subtitle">Mis Proyectos</div>
+                    <h2 class="section-title">Aplicaciones Personales</h2>
                 </div>
                 <div class="portfolio-controls">
                     <button class="portfolio-btn" id="prev-portfolio">
@@ -1038,21 +1118,22 @@
     <section class="stats" id="nosotros">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">10K+</div>
-                    <div class="stat-text">Descargas Totales</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">4.8★</div>
-                    <div class="stat-text">Valoración Media</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">3</div>
-                    <div class="stat-text">Apps Publicadas</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">2</div>
-                    <div class="stat-text">Años Innovando</div>
+                    <div class="stat-item">
+                        <div class="stat-number">7</div>
+                        <div class="stat-text">Proyectos Personales</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-text">Pasión</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">❤️</div>
+                        <div class="stat-text">Hobby</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-text">Creatividad</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1062,11 +1143,11 @@
     <section class="cta" id="contacto">
         <div class="container">
             <div class="cta-content">
-                <h2>¿Listo para Descubrir Nuestras Apps?</h2>
-                <p>Descarga nuestras aplicaciones y únete a nuestra comunidad de usuarios satisfechos.</p>
-                <a href="#apps" class="btn-primary">
-                    Ver Todas Nuestras Apps
-                    <i class="fas fa-arrow-right"></i>
+                <h2>¿Te interesan mis proyectos?</h2>
+                <p>Echa un vistazo a mis aplicaciones y videoclips realizados como aficionado.</p>
+                <a href="films.html" class="btn-primary">
+                    Ver Videoclips
+                    <i class="fas fa-play-circle"></i>
                 </a>
             </div>
         </div>
@@ -1077,13 +1158,13 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-col footer-about">
-                    <h3>Appstracta</h3>
-                    <p>Desarrollamos aplicaciones móviles innovadoras que transforman industrias y mejoran la vida de las personas.</p>
-                    <div class="social-links">
+                <h3>Appstracta</h3>
+                <p>Proyectos personales de apps y música desarrollados como aficionado apasionado por la tecnología.</p>
+                                <div class="social-links">
                         <a href="https://twitter.com/appstracta" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://linkedin.com/company/appstracta" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://instagram.com/appstracta" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="mailto:info@appstracta.app"><i class="fas fa-envelope"></i></a>
+                        <a href="mailto:contact@appstracta.app"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -1096,12 +1177,13 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Empresa</h3>
+                    <h3>Sobre Mí</h3>
                     <ul>
                         <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#apps">Nuestras Apps</a></li>
+                        <li><a href="#apps">Mis Apps</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="films.html">Videoclips</a></li>
+                        <li><a href="mailto:contact@appstracta.app">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="footer-col footer-newsletter">
@@ -1115,7 +1197,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Appstracta. Todos los derechos reservados.</p>
+                <p>&copy; 2025 Proyectos personales · Appstracta.</p>
             </div>
         </div>
     </footer>
