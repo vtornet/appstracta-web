@@ -126,25 +126,15 @@ Lista de mejoras sugeridas para el sitio web. Marcar con `[X]` cuando completado
 
 ### ✅ Completadas
 - [X] **#1**: Unificar estilos CSS en archivos externos (main.css, films.css, formats.css)
+- [X] **#4**: Hacer funcional el carrusel del portfolio
+  - Navegación con botones prev/next funcionando
+  - Transiciones suaves con scroll snap
+  - Indicadores visuales (dots) de posición
+  - Responsive: 1 card móvil, 2 tablet, 3 desktop
 
-### 🎯 Prioridad Alta
-- [ ] **#2**: Destacar Agro Red como proyecto principal
-  - Mover Agro Red a primera posición en el grid de apps
-  - Añadir badge "Featured" o "Destacado"
-  - Ampliar descripción con características clave
-
-### 📊 Contenido
-- [ ] **#3**: Añadir estadísticas concretas
-  - Número de descargas de apps
-  - Usuarios activos
-  - Reproducciones de videoclips
-  - Sustituir estadísticas genéricas ("100%", "∞") por datos reales
-
-### 🔧 Funcionalidad
-- [ ] **#4**: Hacer funcional el carrusel del portfolio
-  - Implementar navegación con botones prev/next
-  - Añadir transiciones suaves entre cards
-  - Indicador visual de posición actual
+### ⏭️ Saltados (decisión del usuario)
+- ~~#2~~: Destacar Agro Red como proyecto principal (mantener aspecto de proyecto personal)
+- ~~#3~~: Añadir estadísticas concretas (mantener aspecto de proyecto personal, no empresa)
 
 ### 🔍 SEO
 - [ ] **#5**: Mejorar SEO
@@ -155,7 +145,7 @@ Lista de mejoras sugeridas para el sitio web. Marcar con `[X]` cuando completado
   - Sitemap.xml
 
 ### 🎨 Diseño
-- [ ] **#6**: Añadir favicon
+- [X] **#6**: Añadir favicon (favicon.ico añadido con links en todas las páginas)
 - [ ] **#7**: Optimizar imágenes para web (WebP, compresión)
 - [ ] **#8**: Añadir animaciones sutiles al hacer scroll
 
