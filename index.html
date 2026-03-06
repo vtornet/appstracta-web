@@ -99,7 +99,7 @@
     <!-- Apps Section -->
     <section class="apps" id="apps">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header fade-in-up">
                 <div class="section-subtitle">Mis Aplicaciones</div>
                 <h2 class="section-title">Proyectos Personales</h2>
                 <p class="section-desc">Apps que desarrollo como afición, enfocadas en resolver necesidades cotidianas de forma sencilla.</p>
@@ -146,7 +146,7 @@
     <section class="portfolio" id="portfolio">
         <div class="container">
             <div class="portfolio-header">
-                <div class="section-header" style="text-align: left; margin: 0;">
+                <div class="section-header fade-in-up" style="text-align: left; margin: 0;">
                     <div class="section-subtitle">Mis Proyectos</div>
                     <h2 class="section-title">Aplicaciones Personales</h2>
                 </div>
@@ -266,7 +266,7 @@
     <!-- CTA Section -->
     <section class="cta" id="contacto">
         <div class="container">
-            <div class="cta-content">
+            <div class="cta-content fade-in-up">
                 <h2>¿Te interesan mis proyectos?</h2>
                 <p>Echa un vistazo a mis aplicaciones y videoclips realizados como aficionado.</p>
                 <a href="films.html" class="btn-primary">
@@ -461,7 +461,34 @@
                 }
             });
         });
-        
+
+        // Scroll animations (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Opcional: dejar de observar una vez animado
+                    // observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos con animación
+        document.querySelectorAll('.fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observar cards específicos
+        document.querySelectorAll('.app-card, .portfolio-card, .stat-item, .footer-col').forEach(el => {
+            observer.observe(el);
+        });
+
         // Coming soon links
         document.querySelectorAll('.coming-soon').forEach(link => {
             link.addEventListener('click', function(e) {

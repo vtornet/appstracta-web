@@ -933,3 +933,104 @@ footer {
         max-width: 350px;
     }
 }
+
+/* ========================================
+   SCROLL ANIMATIONS
+   ======================================== */
+
+/* Clases base para animación */
+.fade-in,
+.fade-in-up,
+.fade-in-left,
+.fade-in-right,
+.scale-in {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in {
+    opacity: 0;
+}
+
+.fade-in-up {
+    transform: translateY(30px);
+}
+
+.fade-in-left {
+    transform: translateX(-30px);
+}
+
+.fade-in-right {
+    transform: translateX(30px);
+}
+
+.scale-in {
+    transform: scale(0.9);
+}
+
+/* Estado activo cuando es visible */
+.fade-in.visible,
+.fade-in-up.visible,
+.fade-in-left.visible,
+.fade-in-right.visible,
+.scale-in.visible {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+/* Delays escalonados para elementos en grid */
+.fade-in-up:nth-child(1) { transition-delay: 0ms; }
+.fade-in-up:nth-child(2) { transition-delay: 100ms; }
+.fade-in-up:nth-child(3) { transition-delay: 200ms; }
+.fade-in-up:nth-child(4) { transition-delay: 300ms; }
+
+/* Secciones específicas */
+.section-header .fade-in-up {
+    transition-delay: 0ms;
+}
+
+.app-card,
+.portfolio-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.app-card.visible,
+.portfolio-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.stat-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-item:nth-child(1) { transition-delay: 0ms; }
+.stat-item:nth-child(2) { transition-delay: 100ms; }
+.stat-item:nth-child(3) { transition-delay: 200ms; }
+.stat-item:nth-child(4) { transition-delay: 300ms; }
+
+/* Footer columns */
+.footer-col {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.footer-col.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footer-col:nth-child(1) { transition-delay: 0ms; }
+.footer-col:nth-child(2) { transition-delay: 100ms; }
+.footer-col:nth-child(3) { transition-delay: 200ms; }
+.footer-col:nth-child(4) { transition-delay: 300ms; }
