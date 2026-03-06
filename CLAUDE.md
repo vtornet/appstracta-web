@@ -147,7 +147,10 @@ Lista de mejoras sugeridas para el sitio web. Marcar con `[X]` cuando completado
 
 ### 🎨 Diseño
 - [X] **#6**: Añadir favicon (favicon.ico añadido con links en todas las páginas)
-- [ ] **#7**: Optimizar imágenes para web (WebP, compresión)
+- [X] **#7**: Optimizar imágenes para web (WebP, compresión)
+  - Todas las imágenes optimizadas y convertidas a WebP
+  - Ahorro total de ~3MB en tamaño de imágenes
+  - HTML actualizado con <picture> para WebP con fallback
 - [ ] **#8**: Añadir animaciones sutiles al hacer scroll
 
 ## Política de Enlaces Externos
