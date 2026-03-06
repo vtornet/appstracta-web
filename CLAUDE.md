@@ -1,38 +1,38 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Este archivo proporciona guía a Claude Code (claude.ai/code) para trabajar con el código en este repositorio.
 
-## Project Overview
+## Resumen del Proyecto
 
-Appstracta Web is a **static site** (no build process) showcasing personal projects including mobile apps, music videos (Appstracta Films), and TV formats (Appstracta Formats). The site is deployed via GitHub Pages with a custom domain (appstracta.app).
+Appstracta Web es un **sitio estático** (sin proceso de build) que presenta proyectos personales incluyendo aplicaciones móviles, vídeos musicales (Appstracta Films) y formatos de televisión (Appstracta Formats). El sitio se despliega mediante GitHub Pages con dominio personalizado (appstracta.app).
 
-## Architecture
+## Arquitectura
 
-### Page Structure
-- `index.html` - Main landing page (apps portfolio)
-- `films.html` - Music video clips with embedded YouTube players
-- `formats.html` - TV format "Una Sola Voz" documentation
+### Estructura de Páginas
+- `index.html` - Página principal (portfolio de aplicaciones)
+- `films.html` - Videoclips musicales con reproductores YouTube integrados
+- `formats.html` - Documentación del formato de TV "Una Sola Voz"
 
-### CSS Architecture (Unified - Marzo 2026)
-CSS is organized in external files for better maintainability:
+### Arquitectura CSS (Unificada - Marzo 2026)
+El CSS está organizado en archivos externos para mejor mantenimiento:
 
-- `css/main.css` - **Common styles** shared across all pages (variables, reset, header, footer, buttons, sections)
-- `css/films.css` - **Films-specific styles** (hero-films, video cards, music platforms)
-- `css/formats.css` - **Formats-specific styles** (hero-formats, concept cards, specs)
+- `css/main.css` - **Estilos comunes** compartidos entre todas las páginas (variables, reset, header, footer, botones, secciones)
+- `css/films.css` - **Estilos específicos de films** (hero-films, tarjetas de vídeo, plataformas musicales)
+- `css/formats.css` - **Estilos específicos de formats** (hero-formats, tarjetas de concepto, especificaciones)
 
-Each HTML page includes:
+Cada página HTML incluye:
 ```html
 <link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/[page].css">  <!-- films.css or formats.css -->
+<link rel="stylesheet" href="css/[page].css">  <!-- films.css o formats.css -->
 ```
 
-### Design System
-CSS variables defined in `main.css`:
+### Sistema de Diseño
+Variables CSS definidas en `main.css`:
 ```css
 :root {
-    --primary: #2c3e50;     /* Dark blue-gray */
-    --secondary: #3498db;   /* Blue (formats.html overrides to #9b59b6 purple) */
-    --accent: #e74c3c;      /* Red */
+    --primary: #2c3e50;     /* Azul grisáceo oscuro */
+    --secondary: #3498db;   /* Azul (formats.html sobrescribe a #9b59b6 púrpura) */
+    --accent: #e74c3c;      /* Rojo */
     --light: #ecf0f1;
     --dark: #2c3e50;
     --text: #333;
@@ -43,15 +43,15 @@ CSS variables defined in `main.css`:
 }
 ```
 
-### Responsive Breakpoints
-- 1200px - Typography adjustments
-- 992px - Footer layout, hide hero visual
-- 768px - Mobile menu appears, grids collapse to 1 column
-- 576px - Smaller typography
+### Breakpoints Responsivos
+- 1200px - Ajustes de tipografía
+- 992px - Layout del footer, ocultar visual hero
+- 768px - Menú móvil aparece, grids colapsan a 1 columna
+- 576px - Tipografía más pequeña
 
-### Key Patterns
+### Patrones Clave
 
-**Mobile Menu Toggle:**
+**Toggle de Menú Móvil:**
 ```javascript
 document.querySelector('.mobile-menu').addEventListener('click', function() {
     const nav = document.querySelector('nav ul');
@@ -61,30 +61,31 @@ document.querySelector('.mobile-menu').addEventListener('click', function() {
 ```
 
 **Smooth Scroll:**
-Internal anchor links use `targetElement.offsetTop - 80` to account for fixed header.
+Los enlaces ancla internos usan `targetElement.offsetTop - 80` para compensar el header fijo.
 
-**Coming Soon Links:**
-Links with `.coming-soon` class trigger an alert dialog - these are placeholder apps not yet released.
+**Enlaces "Próximamente":**
+Los enlaces con clase `.coming-soon` muestran un diálogo de alerta - son apps placeholder aún no lanzadas.
 
-## File Organization
+## Organización de Archivos
 
 ```
 Web/
-├── index.html          # Main landing page
-├── films.html          # Music videos portfolio
-├── formats.html        # TV format documentation
+├── index.html          # Página principal
+├── films.html          # Portfolio de videoclips
+├── formats.html        # Documentación de formato TV
+├── CLAUDE.md           # Este archivo
 ├── css/
-│   ├── main.css        # Common styles (variables, reset, header, footer, buttons)
-│   ├── films.css       # Films-specific styles (video cards, music platforms)
-│   └── formats.css     # Formats-specific styles (concept cards, specs)
-├── logos/              # App logo PNGs
-└── images/             # Hero background, mockups
+│   ├── main.css        # Estilos comunes (variables, reset, header, footer, botones)
+│   ├── films.css       # Estilos específicos de films (tarjetas de vídeo, plataformas)
+│   └── formats.css     # Estilos específicos de formats (conceptos, especificaciones)
+├── logos/              # Logotipos PNG de las apps
+└── images/             # Fondo hero, mockups
 ```
 
-## Common Operations
+## Operaciones Comunes
 
-### Testing locally
-No build required. Open files directly in browser or use any static server:
+### Prueba local
+No requiere build. Abrir archivos directamente en el navegador o usar cualquier servidor estático:
 ```bash
 # Python 3
 python -m http.server 8000
@@ -93,28 +94,75 @@ python -m http.server 8000
 npx serve
 ```
 
-### Deploying
-Push to `master` branch - GitHub Pages auto-deploys from root directory.
+### Despliegue
+Hacer push a la rama `master` - GitHub Pages despliega automáticamente desde el directorio raíz.
 
-## Important Notes
+## Notas Importantes
 
-- **No CSS nesting allowed** - Standard CSS only, no SCSS/SASS features
-- **External CSS preferred** - Add common styles to `css/main.css`, page-specific styles to respective CSS files
-- **No inline CSS** - Keep HTML clean; use existing CSS classes or add to CSS files
-- **Consistent header** - All pages use the same fixed header structure (defined in main.css)
-- **Contact email** - `contact@appstracta.app`
+- **Sin anidamiento CSS** - CSS estándar solamente, sin características SCSS/SASS
+- **CSS externo preferido** - Añadir estilos comunes a `css/main.css`, estilos específicos a sus archivos CSS respectivos
+- **Sin CSS inline** - Mantener HTML limpio; usar clases CSS existentes o añadir a archivos CSS
+- **Header consistente** - Todas las páginas usan la misma estructura de header fijo (definida en main.css)
+- **Email de contacto** - `contact@appstracta.app`
 
-## Recent Changes (Marzo 2026)
+## Cambios Recientes (Marzo 2026)
 
-### CSS Unification
-- Migrated all inline CSS to external files (~1900 lines removed from HTML)
-- Created `css/main.css` with shared styles across all pages
-- Created `css/films.css` for films.html specific styles
-- Created `css/formats.css` for formats.html specific styles
-- Result: More maintainable codebase with better caching performance
+### Unificación de CSS ✅
+- Migrado todo el CSS inline a archivos externos (~1900 líneas eliminadas del HTML)
+- Creado `css/main.css` con estilos compartidos
+- Creado `css/films.css` para estilos específicos de films.html
+- Creado `css/formats.css` para estilos específicos de formats.html
+- Resultado: Código más mantenible con mejor rendimiento de caché
 
-### Content Updates
-- Replaced "PiVerse" with "Agro Red" in apps and portfolio sections
-- Added Agro Red logo (`logos/agro-red-logo.png`)
-- Added video card IDs to films.html for footer anchor links
-- Made formats.html accessible via hidden link (not visible in navigation)
+### Actualizaciones de Contenido
+- Reemplazado "PiVerse" por "Agro Red" en secciones de apps y portfolio
+- Añadido logotipo de Agro Red (`logos/agro-red-logo.png`)
+- Añadidos IDs a tarjetas de vídeo en films.html para anclas del footer
+- formats.html accesible mediante enlace oculto (no visible en navegación)
+
+## Mejoras Pendientes
+
+Lista de mejoras sugeridas para el sitio web. Marcar con `[X]` cuando completado.
+
+### ✅ Completadas
+- [X] **#1**: Unificar estilos CSS en archivos externos (main.css, films.css, formats.css)
+
+### 🎯 Prioridad Alta
+- [ ] **#2**: Destacar Agro Red como proyecto principal
+  - Mover Agro Red a primera posición en el grid de apps
+  - Añadir badge "Featured" o "Destacado"
+  - Ampliar descripción con características clave
+
+### 📊 Contenido
+- [ ] **#3**: Añadir estadísticas concretas
+  - Número de descargas de apps
+  - Usuarios activos
+  - Reproducciones de videoclips
+  - Sustituir estadísticas genéricas ("100%", "∞") por datos reales
+
+### 🔧 Funcionalidad
+- [ ] **#4**: Hacer funcional el carrusel del portfolio
+  - Implementar navegación con botones prev/next
+  - Añadir transiciones suaves entre cards
+  - Indicador visual de posición actual
+
+### 🔍 SEO
+- [ ] **#5**: Mejorar SEO
+  - Añadir meta tags descriptivos
+  - Open Graph para redes sociales
+  - Twitter Cards
+  - Meta descripción específica por página
+  - Sitemap.xml
+
+### 🎨 Diseño
+- [ ] **#6**: Añadir favicon
+- [ ] **#7**: Optimizar imágenes para web (WebP, compresión)
+- [ ] **#8**: Añadir animaciones sutiles al hacer scroll
+
+## Política de Enlaces Externos
+
+**IMPORTANTE:** Todos los proyectos están en fase beta/desarrollo. No añadir enlaces externos reales hasta que los productos estén listos para el público.
+
+- Enlaces a apps: usar `#` o `.coming-soon` para productos no lanzados
+- Agro Red: https://agroredjob.com (único enlace real permitido por ahora)
+- Enlaces sociales: verificados y funcionales
