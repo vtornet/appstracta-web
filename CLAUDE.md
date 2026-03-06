@@ -9,21 +9,37 @@ Appstracta Web is a **static site** (no build process) showcasing personal proje
 ## Architecture
 
 ### Page Structure
-Each page is **self-contained** with embedded `<style>` blocks. CSS is not external (except `css/style.css` which contains only minimal overrides).
-
 - `index.html` - Main landing page (apps portfolio)
 - `films.html` - Music video clips with embedded YouTube players
 - `formats.html` - TV format "Una Sola Voz" documentation
 
+### CSS Architecture (Unified - Marzo 2026)
+CSS is organized in external files for better maintainability:
+
+- `css/main.css` - **Common styles** shared across all pages (variables, reset, header, footer, buttons, sections)
+- `css/films.css` - **Films-specific styles** (hero-films, video cards, music platforms)
+- `css/formats.css` - **Formats-specific styles** (hero-formats, concept cards, specs)
+
+Each HTML page includes:
+```html
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/[page].css">  <!-- films.css or formats.css -->
+```
+
 ### Design System
-CSS variables defined per-page (consistent across all files):
+CSS variables defined in `main.css`:
 ```css
 :root {
     --primary: #2c3e50;     /* Dark blue-gray */
-    --secondary: #3498db;   /* Blue (or #9b59b6 purple on formats.html) */
+    --secondary: #3498db;   /* Blue (formats.html overrides to #9b59b6 purple) */
     --accent: #e74c3c;      /* Red */
     --light: #ecf0f1;
     --dark: #2c3e50;
+    --text: #333;
+    --gray: #95a5a6;
+    --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 ```
 
@@ -58,7 +74,9 @@ Web/
 ├── films.html          # Music videos portfolio
 ├── formats.html        # TV format documentation
 ├── css/
-│   └── style.css       # Minimal overrides (logo-img, app-mockup)
+│   ├── main.css        # Common styles (variables, reset, header, footer, buttons)
+│   ├── films.css       # Films-specific styles (video cards, music platforms)
+│   └── formats.css     # Formats-specific styles (concept cards, specs)
 ├── logos/              # App logo PNGs
 └── images/             # Hero background, mockups
 ```
@@ -81,6 +99,22 @@ Push to `master` branch - GitHub Pages auto-deploys from root directory.
 ## Important Notes
 
 - **No CSS nesting allowed** - Standard CSS only, no SCSS/SASS features
-- **Inline CSS per page** - When adding styles, put them in the `<style>` block of the specific page, not in `css/style.css`
-- **Consistent header** - All pages use the same fixed header structure
+- **External CSS preferred** - Add common styles to `css/main.css`, page-specific styles to respective CSS files
+- **No inline CSS** - Keep HTML clean; use existing CSS classes or add to CSS files
+- **Consistent header** - All pages use the same fixed header structure (defined in main.css)
 - **Contact email** - `contact@appstracta.app`
+
+## Recent Changes (Marzo 2026)
+
+### CSS Unification
+- Migrated all inline CSS to external files (~1900 lines removed from HTML)
+- Created `css/main.css` with shared styles across all pages
+- Created `css/films.css` for films.html specific styles
+- Created `css/formats.css` for formats.html specific styles
+- Result: More maintainable codebase with better caching performance
+
+### Content Updates
+- Replaced "PiVerse" with "Agro Red" in apps and portfolio sections
+- Added Agro Red logo (`logos/agro-red-logo.png`)
+- Added video card IDs to films.html for footer anchor links
+- Made formats.html accessible via hidden link (not visible in navigation)
