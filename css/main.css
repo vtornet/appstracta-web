@@ -466,17 +466,33 @@ nav ul li a:hover::after {
 }
 
 .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    display: flex;
     gap: 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 0;
+}
+
+.portfolio-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.portfolio-grid {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .portfolio-card {
+    flex: 0 0 calc(100% - 60px);
+    max-width: 400px;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
     background: white;
+    scroll-snap-align: center;
 }
 
 .portfolio-card:hover {
@@ -579,6 +595,33 @@ nav ul li a:hover::after {
     background: var(--gray);
     transform: none;
     gap: 8px;
+}
+
+/* Carousel Dots */
+.portfolio-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.portfolio-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--light);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.portfolio-dot.active {
+    background: var(--accent);
+    transform: scale(1.2);
+}
+
+.portfolio-dot:hover {
+    background: var(--primary);
 }
 
 /* ========================================
@@ -837,8 +880,7 @@ footer {
         font-size: 2.2rem;
     }
 
-    .apps-grid,
-    .portfolio-grid {
+    .apps-grid {
         grid-template-columns: 1fr;
     }
 
@@ -873,5 +915,20 @@ footer {
     .hero-badge {
         font-size: 0.75rem;
         padding: 6px 15px;
+    }
+}
+
+/* Portfolio carousel - mostrar más cards en pantallas grandes */
+@media (min-width: 768px) {
+    .portfolio-card {
+        flex: 0 0 calc(50% - 20px);
+        max-width: 350px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .portfolio-card {
+        flex: 0 0 calc(33.333% - 20px);
+        max-width: 350px;
     }
 }

@@ -200,6 +200,8 @@
                     </div>
                 </div>
             </div>
+            <!-- Carrusel Dots -->
+            <div class="portfolio-dots" id="portfolio-dots"></div>
         </div>
     </section>
 
@@ -334,29 +336,81 @@
             });
         });
         
-        // Portfolio navigation
-        let currentPortfolioIndex = 0;
-        const portfolioCards = document.querySelectorAll('.portfolio-card');
+        // Portfolio carousel
         const portfolioGrid = document.querySelector('.portfolio-grid');
-        
-        document.getElementById('prev-portfolio').addEventListener('click', function() {
-            if (currentPortfolioIndex > 0) {
-                currentPortfolioIndex--;
-                updatePortfolioView();
-            }
-        });
-        
-        document.getElementById('next-portfolio').addEventListener('click', function() {
-            if (currentPortfolioIndex < portfolioCards.length - 1) {
-                currentPortfolioIndex++;
-                updatePortfolioView();
-            }
-        });
-        
-        function updatePortfolioView() {
-            const offset = -currentPortfolioIndex * 100;
-            portfolioGrid.style.transform = `translateX(${offset}%)`;
+        const portfolioCards = document.querySelectorAll('.portfolio-card');
+        const portfolioDotsContainer = document.getElementById('portfolio-dots');
+        const prevBtn = document.getElementById('prev-portfolio');
+        const nextBtn = document.getElementById('next-portfolio');
+
+        // Calcular cuántos cards son visibles según el ancho de pantalla
+        function getVisibleCards() {
+            if (window.innerWidth >= 1200) return 3;
+            if (window.innerWidth >= 768) return 2;
+            return 1;
         }
+
+        let currentIndex = 0;
+
+        // Crear dots
+        function createDots() {
+            portfolioDotsContainer.innerHTML = '';
+            const totalDots = Math.max(1, portfolioCards.length - getVisibleCards() + 1);
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'portfolio-dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', () => goToSlide(i));
+                portfolioDotsContainer.appendChild(dot);
+            }
+        }
+
+        // Actualizar dots activos
+        function updateDots() {
+            const dots = portfolioDotsContainer.querySelectorAll('.portfolio-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        // Ir a un slide específico
+        function goToSlide(index) {
+            const visible = getVisibleCards();
+            const maxIndex = Math.max(0, portfolioCards.length - visible);
+            currentIndex = Math.max(0, Math.min(index, maxIndex));
+
+            const cardWidth = portfolioCards[0].offsetWidth + 30; // 30 es el gap
+            portfolioGrid.scrollTo({
+                left: currentIndex * cardWidth,
+                behavior: 'smooth'
+            });
+
+            updateDots();
+        }
+
+        // Navegación con botones
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                goToSlide(currentIndex - 1);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const visible = getVisibleCards();
+            const maxIndex = Math.max(0, portfolioCards.length - visible);
+            if (currentIndex < maxIndex) {
+                goToSlide(currentIndex + 1);
+            }
+        });
+
+        // Inicializar
+        createDots();
+
+        // Recrear dots al redimensionar
+        window.addEventListener('resize', () => {
+            createDots();
+            currentIndex = 0;
+            updateDots();
+        });
         
         // Newsletter form
         document.getElementById('newsletter-form').addEventListener('submit', function(e) {
