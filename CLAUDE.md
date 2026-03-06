@@ -151,7 +151,11 @@ Lista de mejoras sugeridas para el sitio web. Marcar con `[X]` cuando completado
   - Todas las imágenes optimizadas y convertidas a WebP
   - Ahorro total de ~3MB en tamaño de imágenes
   - HTML actualizado con <picture> para WebP con fallback
-- [ ] **#8**: Añadir animaciones sutiles al hacer scroll
+- [X] **#8**: Añadir animaciones sutiles al hacer scroll
+  - Intersection Observer para detectar elementos visibles
+  - Animaciones fade-in-up para headers y cards
+  - Delays escalonados para efecto cascada
+  - Aplicado a apps, portfolio, stats y footer
 
 ## Política de Enlaces Externos
 
