@@ -1,0 +1,7 @@
+# Robots.txt para Appstracta Web
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://appstracta.app/sitemap.xml
