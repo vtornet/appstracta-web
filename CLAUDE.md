@@ -137,12 +137,13 @@ Lista de mejoras sugeridas para el sitio web. Marcar con `[X]` cuando completado
 - ~~#3~~: Añadir estadísticas concretas (mantener aspecto de proyecto personal, no empresa)
 
 ### 🔍 SEO
-- [ ] **#5**: Mejorar SEO
-  - Añadir meta tags descriptivos
-  - Open Graph para redes sociales
+- [X] **#5**: Mejorar SEO
+  - Meta tags descriptivos en todas las páginas
+  - Open Graph para Facebook/LinkedIn
   - Twitter Cards
-  - Meta descripción específica por página
-  - Sitemap.xml
+  - Canonical URLs
+  - Sitemap.xml creado
+  - Robots.txt creado
 
 ### 🎨 Diseño
 - [X] **#6**: Añadir favicon (favicon.ico añadido con links en todas las páginas)
