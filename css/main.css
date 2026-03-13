@@ -426,6 +426,14 @@ nav ul li a:hover::after {
     gap: 8px;
 }
 
+/* Multiple app links container */
+.app-links {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 /* ========================================
    PORTFOLIO SECTION
    ======================================== */
@@ -596,6 +604,13 @@ nav ul li a:hover::after {
     background: var(--gray);
     transform: none;
     gap: 8px;
+}
+
+/* Multiple portfolio links container */
+.portfolio-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 /* Carousel Dots */
