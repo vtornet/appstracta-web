@@ -426,6 +426,17 @@ nav ul li a:hover::after {
     gap: 8px;
 }
 
+.app-link.premium-link {
+    background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+    border-color: transparent;
+    color: var(--text);
+}
+
+.app-link.premium-link:hover {
+    background: linear-gradient(135deg, #FFB300 0%, #F57C00 100%);
+    transform: translateY(-2px);
+}
+
 /* Multiple app links container */
 .app-links {
     display: flex;
